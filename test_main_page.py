@@ -7,5 +7,10 @@ def test_guest_can_go_to_login_page(browser):
     page.open()                      # открываем страницу
     page.go_to_login_page()
 
+def should_be_login_link(self):
+    assert self.is_element_present(By.CSS_SELECTOR, "#login_link"), "Login link is not presented"
+
+
+
 
 
