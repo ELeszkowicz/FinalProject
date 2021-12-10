@@ -13,6 +13,7 @@ class ProductPage(BasePage):
         self.test_message_disappeared_after_adding_product_to_basket()
         self.test_guest_should_see_login_link_on_product_page()
         self.test_guest_should_see_login_link_from_product_page()
+        self.test_guest_cant_see_product_in_basket_opened_from_product_page()
 
     def test_guest_can_add_product_to_basket(self):
         book_price = self.browser.find_element(*ProductPageLocators.PRODUCT_PRICE).text
@@ -60,6 +61,13 @@ class ProductPage(BasePage):
         WebDriverWait(self.browser, 5).until(
             ec.element_to_be_clickable(BasePageLocators.LOGIN_LINK))
         assert True, "There is no way to registration from product page"
+
+    def test_guest_cant_see_product_in_basket_opened_from_product_page(self):
+        WebDriverWait(self.browser, 5).until(
+            ec.element_to_be_clickable(ProductPageLocators.BASKET_LINK)).click()
+        WebDriverWait(self.browser, 5).until(
+            ec.element_to_be_clickable(ProductPageLocators.EMPTY_BASKET))
+        assert True, "The message about empty basket is not visible"
 
 
 
