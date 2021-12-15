@@ -1,4 +1,7 @@
-from .pages.main_page import MainPage
+from pages.main_page import MainPage
+from pages.login_page import LoginPage
+from pages.basket_page import BasketPage
+import pytest
 
 def go_to_login_page(browser):
     login_link = browser.find_element_by_css_selector("#login_link")
