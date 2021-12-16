@@ -102,6 +102,8 @@ class ProductPage(BasePage):
 
         WebDriverWait(self.browser, 5).until(
             ec.element_to_be_clickable(ProductPageLocators.ADD_TO_BASKET)).click()
+        self.solve_quiz_and_get_code()
+        time.sleep(2)
         book_price_basket = self.browser.find_element(*ProductPageLocators.PRODUCT_PRICE_BASKET).text
         book_name_basket = self.browser.find_element(*ProductPageLocators.PRODUCT_NAME_BASKET).text
         assert book_name == book_name_basket, "Product name in product page and product name in basket didn`t match"
